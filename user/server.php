@@ -16,9 +16,26 @@ if(isset($_POST['register'])) {
     $email = mysqli_real_escape_string($db ,$_POST['email']);
     $password_1 = mysqli_real_escape_string($db ,$_POST['password_1']);
     $password_2 = mysqli_real_escape_string($db ,$_POST['password_2']);
+    $semester = mysqli_real_escape_string($db ,$_POST['semester']);
+    $course = mysqli_real_escape_string($db ,$_POST['course']);
+    $enrollment = mysqli_real_escape_string($db ,$_POST['enrollment']);
+    $year = mysqli_real_escape_string($db ,$_POST['year']);
+
 
     if(empty($username)){
         array_push($errors, "Username is required");
+    }
+    if(empty($course)){
+        array_push($errors, "Course is required");
+    }
+    if(empty($year)){
+        array_push($errors, "Year is required");
+    }
+    if(empty($semester)){
+        array_push($errors, "Semester is required");
+    }
+    if(empty($enrollment)){
+        array_push($errors, "Enrollment is required");
     }
     if(empty($email)){
         array_push($errors, "Email is required");
@@ -26,7 +43,6 @@ if(isset($_POST['register'])) {
     if(empty($password_1)){
         array_push($errors, "Password is required");
     }
-    
     if(empty($firstname)){
         array_push($errors, "First name is required");
     }
@@ -87,8 +103,9 @@ if(isset($_POST['register'])) {
         }
         else{
             
-            $sql = "INSERT INTO users (username, email, password, Firstname, Lastname, DOB)
-                                    VALUES ('$username', '$email', '$password', '$firstname', '$lastname', '$dob')";
+            $sql = "INSERT INTO users (username, email, password, Firstname, Lastname, DOB, Year, Semester,
+            Course, Enrollment) VALUES ('$username', '$email', '$password', '$firstname', '$lastname',
+             '$dob', '$year','$semester','$course','$enrollment')";
             $result = mysqli_query($db, $sql);
             if (!$result){
                 die("Adding record is failing.");

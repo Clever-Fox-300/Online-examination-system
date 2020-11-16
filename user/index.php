@@ -39,7 +39,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link logout" href="logout.php">logout</a>
+                <a class="nav-link logout" href="loginS.php">logout</a>
               </li>
         </ul>
       </div>

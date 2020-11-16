@@ -31,8 +31,8 @@
     <input type="text" name="email">   
     </div>
     <div class="input-group">
-    <label>D.O.B</label>
-    <input type="Date" name="DOB">   
+    <label>D.O.B.</label>
+    <input type="date" name="DOB">   
     </div>
     <div class="input-group">
     <label>Password</label>
