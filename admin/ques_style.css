@@ -12,7 +12,7 @@
 }
 #question_container{
     width: 30%;
-    height: 600px;
+    height: 500px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 440px;
@@ -24,9 +24,20 @@
 #mcq, #subjective{
     background: #5f9ea0;
     color: white;
-    margin:20px 60px 30px 20px;
     padding:15px;
     border-radius:5px;
+}
+#mcq{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 490px;
+    margin-right: 10px;
+}
+#subjective{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+    margin-right: 10px;
 }
 #mcq:hover, #subjective:hover{
     background: #0a494b;
@@ -47,43 +58,27 @@
     width:400px;
     height: 100px;
 }
-#question_container input:nth-child(5){    /* text box */
+#question_container input:nth-child(3n){    /* text box */
     width: 200px;
     height:40px;
     margin: 10px 10px 10px 10px;
 }
-#question_container input:nth-child(8){    /* text box */
-    width: 200px;
-    height:40px;
-    margin: 10px 10px 10px 10px;
-}
-#question_container input:nth-child(11){    /* text box */
-    width: 200px;
-    height:40px;
-    margin: 10px 10px 10px 10px;
-}
-#question_container input:nth-child(14){    /* text box */
-    width: 200px;
-    height:40px;
-    margin: 10px 10px 10px 10px;
-}
-
-#question_container input:nth-child(4){    /*  radio button */
+#question_container input:nth-child(2){    /*  radio button */
     width: 20px;
     height:15px;
     margin: 10px 10px 50px 10px;
 }
-#question_container input:nth-child(7){    /*  radio button */
+#question_container input:nth-child(5){    /*  radio button */
     width: 20px;
     height:15px;
     margin: 10px 10px 50px 10px;
 }
-#question_container input:nth-child(10){    /*  radio button */
+#question_container input:nth-child(8){    /*  radio button */
     width: 20px;
     height:15px;
     margin: 10px 10px 50px 10px;
 }
-#question_container input:nth-child(13){    /*  radio button */
+#question_container input:nth-child(11){    /*  radio button */
     width: 20px;
     height:15px;
     margin: 10px 10px 50px 10px;

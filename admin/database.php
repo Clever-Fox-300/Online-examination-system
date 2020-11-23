@@ -83,7 +83,7 @@ if(isset($_POST['register'])) {
 
         $result = mysqli_query($db, $sql_username_matching);
         $count = mysqli_num_rows($result);
-        echo $count;
+        // echo $count;
         if ($count > 0){
             array_push($errors, "Sorry! This Username already exists!");
             mysqli_close($db);

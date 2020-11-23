@@ -49,18 +49,54 @@ if(isset($_POST['Create_test'])) {
         $_SESSION['examname'] = $examname;
         $_SESSION['Time_duration'] = $timeduration;
         $_SESSION['Max_score'] = $maxscore;
+        $_SESSION['Date'] =$date;
+        $_SESSION['Time'] = $time;
+        $_SESSION['Semester'] = $semester;
+        $_SESSION['Year'] = $year;
+        $_SESSION['Course'] =$course;
 
-        $sql = "INSERT INTO exam_details (Name, Date, Time, Time_duration, Max_score, Course, Semester, Year)
-        VALUES ('$examname', '$date', '$time', '$timeduration', '$maxscore','$course','$semester','$year')";
-        
-        $result = mysqli_query($db, $sql);
-        
-        if (!$result){
-            die("Exam details is not saved.");
+        $id = "SELECT Id from exam_details WHERE Name='$examname' and Course='$course' and Semester='$semester' and Year='$year'";
+        $ids = mysqli_fetch_array(mysqli_query($db, $id), MYSQLI_BOTH);
+        $exam_id = $ids['Id'];
+
+        $flag = TRUE;
+
+        if (sizeof($exam_id)>0){
+
+            $checking = "SELECT * FROM exam_timing WHERE exam_id= '$exam_id' AND 
+                                                          Date='$date' AND 
+                                                          Time='$time'";
+            $result = mysqli_query($db, $checking);
+            $count = mysqli_num_rows($result);
+
+            if ($count > 0){
+                echo "<script> alert(\"Sorry! This time slot is booked!\");</script>";
+                mysqli_close($db);
+                $flag = FALSE;
+            }
         }
+        if ($flag == TRUE){
+            $sql1 = "INSERT INTO exam_details (Name, Course, Semester, Year)
+            VALUES ('$examname', '$course', '$semester', '$year')";
 
-        mysqli_close($db);
-        header('location: addques.php');
+            $result1 = mysqli_query($db, $sql1);
+
+            $id = "SELECT Id from exam_details WHERE Name='$examname' and Course='$course' and Semester='$semester' and Year='$year'";
+            $ids = mysqli_fetch_array(mysqli_query($db, $id), MYSQLI_BOTH);
+            $id = $ids['Id'];
+
+            $sql2 = "INSERT INTO exam_timing (exam_id, date, time ,timeduration, max_score)
+            VALUES ('$id', '$date', '$time', '$timeduration', '$maxscore')";
+
+            $result2 = mysqli_query($db, $sql2);
+                        
+            if (!$result1 or !$result2){
+                die("Exam details is not saved.");
+            }
+
+            mysqli_close($db);
+            header('location: addques.php');
+         }
     }
 }
 ?>
